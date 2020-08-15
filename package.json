@@ -1,0 +1,16 @@
+{
+  "name": "game_of_life",
+  "version": "1.0.0",
+  "description": "Game of life Html/Css/Js",
+  "main": "javascript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Game",
+    "of",
+    "Life"
+  ],
+  "author": "Baam",
+  "license": "ISC"
+}
