@@ -1,6 +1,7 @@
 var gameState = [];
 var lastedGS = [];
-var generation = 0;
+var prePattern = [];
+var generation;
 var keepLoop = false;
 
 keyboardEvent();
@@ -13,6 +14,8 @@ function start(){
     canvas.height = H;
     gameState = initGS((H/10),(W/10));
     lastedGS = initGS((H/10),(W/10));
+    prePattern = initGS((H/10),(W/10));
+    generation = 0;
     draw();
     loop();
 }
@@ -31,7 +34,7 @@ function loop(){
     }else{
         setTimeout(() => {
             requestAnimationFrame(loop);
-        }, 100);
+        }, 500);
     }
 }
 
@@ -122,6 +125,49 @@ function update(){
     }
 }
 
+function reset(){
+    start();
+}
+
+function glider(){
+    prePattern[0][1] = 1;
+    prePattern[1][2] = 1;
+    prePattern[2][0] = 1;
+    prePattern[2][1] = 1;
+    prePattern[2][2] = 1;
+
+    insertPattern();
+}
+
+function pulsar(){
+    prePattern = [
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,1,1,1,0,0,0,1,1,1,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,1,0,0,0,0,1,0,1,0,0,0,0,1],
+        [0,0,1,0,0,0,0,1,0,1,0,0,0,0,1],
+        [0,0,1,0,0,0,0,1,0,1,0,0,0,0,1],
+        [0,0,0,0,1,1,1,0,0,0,1,1,1,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,1,1,1,0,0,0,1,1,1,0,0],
+        [0,0,1,0,0,0,0,1,0,1,0,0,0,0,1],
+        [0,0,1,0,0,0,0,1,0,1,0,0,0,0,1],
+        [0,0,1,0,0,0,0,1,0,1,0,0,0,0,1],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,1,1,1,0,0,0,1,1,1,0,0],
+    ];
+
+    insertPattern();
+}
+
+function insertPattern(){
+    for(let i=0; i<prePattern.length; i++){
+        for(let j=0; j<prePattern[0].length; j++){
+            gameState[i][j] = prePattern[i][j];
+        }
+    }
+}
 
 //Initializing GameState
 
@@ -143,6 +189,10 @@ function rows(W) {
 
 //KeyBoard Events
 
+function start_stop(){
+    keepLoop = !keepLoop;
+}
+
 function keyboardEvent() {
     document.addEventListener('keydown', function (event) {
         if (event.keyCode == 32) {
@@ -154,7 +204,6 @@ function keyboardEvent() {
 function mouseEvent(event){
     var x = (Math.floor(event.pageX/10))-1;
     var y = (Math.floor(event.pageY/10))-1;
-    //console.log(x + " : " + y);
     if(gameState[y][x] === 0){
         gameState[y][x] = 1;
     }else{

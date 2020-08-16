@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game of Life</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script type="text/javascript" src="javascript.js"></script>
 </head>
 <body onload="start();">
+
+    <div id="mydiv">
+        <div id="mydivheader"><i class="fa fa-arrows-alt"></i></div>
+        <button onclick="reset();">Reset</button>
+        <button onclick="glider();">Glider</button>
+        <button onclick="pulsar();">Pulsar</button>
+        <button onclick="start_stop();">Start/Stop</button>
+    </div>
+
     <canvas onclick="mouseEvent(event)" id="space"></canvas>
+
+    <script type="text/javascript" src="dragElement.js"></script>
 </body>
 </html>
