@@ -2,6 +2,7 @@
 dragElement(document.getElementById("mydiv"));
         
 function dragElement(elmnt) {
+  elmnt.style.left = (window.innerWidth - elmnt.offsetWidth) + "px"; 
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     /* if present, the header is where you move the DIV from:*/
